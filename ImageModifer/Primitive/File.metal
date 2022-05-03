@@ -32,7 +32,7 @@ half4 fragment myFragmentShader(v2f in [[stage_in]] )
 
 typedef struct
 {
-    float4 position;
+    float4 position; //
     float2 texCoords;
 } VertexIn;
 
@@ -64,5 +64,47 @@ fragment float4 showImageFragmentShader(
     constexpr sampler textureSampler (mag_filter::linear, min_filter::linear);
     float4 color = colorTexture.sample(textureSampler, vertexIn.texCoords);
     return color;
+
+}
+
+
+/** 同一张图片进行两次采样 */
+typedef struct
+{
+    float4 position; //
+    float2 texCoords;
+} BlendVertexIn;
+
+
+typedef struct
+{
+    float4 vertexPosition [[position]];
+    float2 texCoorRgb; // 取RGB值的纹理坐标
+    float2 textCoorAlpha; // 取Alpha值的纹理坐标
+}BlendVertexOut;
+
+
+
+vertex BlendVertexOut showBlendImageVertexShader(uint vertexId [[ vertex_id]],
+                                                 const device BlendVertexIn* rbgVertexArray [[buffer(0)]],
+                                                 const device BlendVertexIn* aphaVertexArray [[buffer(1)]]){
+
+    BlendVertexOut verOut;
+    verOut.vertexPosition = rbgVertexArray[vertexId].position;
+    verOut.texCoorRgb = aphaVertexArray[vertexId].texCoords;
+    verOut.textCoorAlpha = aphaVertexArray[vertexId].texCoords;
+    return verOut;
+
+}
+
+fragment float4 showBlendImageFragmentShader(
+                                        BlendVertexOut vertexIn [[stage_in]],
+                                        texture2d <float> colorTexture [[ texture(0) ]]
+                             )
+{
+    constexpr sampler textureSampler (mag_filter::linear, min_filter::linear);
+    float3 rgbClorSample = colorTexture.sample(textureSampler, vertexIn.texCoorRgb).rgb;
+    float alphaClorSample = colorTexture.sample(textureSampler, vertexIn.textCoorAlpha).r;
+    return float4(rgbClorSample, alphaClorSample);
 
 }
