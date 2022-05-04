@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		F807513A28218DD0004F2EB8 /* BlendRenderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F807513928218DD0004F2EB8 /* BlendRenderViewController.m */; };
 		F807513C28219278004F2EB8 /* template.png in Resources */ = {isa = PBXBuildFile; fileRef = F807513B28219278004F2EB8 /* template.png */; };
+		F807513F28229456004F2EB8 /* MetalImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = F807513E28229456004F2EB8 /* MetalImageView.m */; };
 		F81DD5B7280697AB00097C6F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F81DD5B6280697AB00097C6F /* AppDelegate.m */; };
 		F81DD5BA280697AB00097C6F /* ViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = F81DD5B9280697AB00097C6F /* ViewController.mm */; };
 		F81DD5BC280697AE00097C6F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F81DD5BB280697AE00097C6F /* Assets.xcassets */; };
@@ -48,6 +49,9 @@
 		F807513828218DD0004F2EB8 /* BlendRenderViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BlendRenderViewController.h; sourceTree = "<group>"; };
 		F807513928218DD0004F2EB8 /* BlendRenderViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BlendRenderViewController.m; sourceTree = "<group>"; };
 		F807513B28219278004F2EB8 /* template.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = template.png; sourceTree = "<group>"; };
+		F807513D28229456004F2EB8 /* MetalImageView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MetalImageView.h; sourceTree = "<group>"; };
+		F807513E28229456004F2EB8 /* MetalImageView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MetalImageView.m; sourceTree = "<group>"; };
+		F807514028229480004F2EB8 /* HobenShaderType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HobenShaderType.h; sourceTree = "<group>"; };
 		F81DD5B2280697AB00097C6F /* ImageModifer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImageModifer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F81DD5B5280697AB00097C6F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		F81DD5B6280697AB00097C6F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -190,6 +194,9 @@
 				F807513828218DD0004F2EB8 /* BlendRenderViewController.h */,
 				F807513928218DD0004F2EB8 /* BlendRenderViewController.m */,
 				F83B8AA728140E6000C53E13 /* File.metal */,
+				F807513D28229456004F2EB8 /* MetalImageView.h */,
+				F807513E28229456004F2EB8 /* MetalImageView.m */,
+				F807514028229480004F2EB8 /* HobenShaderType.h */,
 			);
 			path = Primitive;
 			sourceTree = "<group>";
@@ -334,6 +341,7 @@
 				F81DD5BA280697AB00097C6F /* ViewController.mm in Sources */,
 				F81DD5C1280697AE00097C6F /* main.m in Sources */,
 				F81DD5B7280697AB00097C6F /* AppDelegate.m in Sources */,
+				F807513F28229456004F2EB8 /* MetalImageView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

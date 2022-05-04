@@ -97,7 +97,8 @@ vertex BlendVertexOut showBlendImageVertexShader(uint vertexId [[ vertex_id]],
 
 }
 
-fragment float4 showBlendImageFragmentShader(
+fragment
+float4 showBlendImageFragmentShader(
                                         BlendVertexOut vertexIn [[stage_in]],
                                         texture2d <float> colorTexture [[ texture(0) ]]
                              )
