@@ -9,6 +9,11 @@
 @import MetalKit;
 
 NS_ASSUME_NONNULL_BEGIN
+typedef NS_ENUM(NSUInteger, HobenRenderingResizingMode) {
+    HobenRenderingResizingModeScale = 0,
+    HobenRenderingResizingModeAspectFit,
+    HobenRenderingResizingModeAspectFill,
+};
 
 @protocol HobenMetalImageViewDataSource <NSObject>
 
