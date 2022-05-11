@@ -26,6 +26,7 @@
 		F83B8AA828140E6000C53E13 /* File.metal in Sources */ = {isa = PBXBuildFile; fileRef = F83B8AA728140E6000C53E13 /* File.metal */; };
 		F8E1069F28071EA8006F2A6A /* test.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = F8E1069E28071EA8006F2A6A /* test.jpeg */; };
 		F8E106A128072A8C006F2A6A /* red.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = F8E106A028072A8C006F2A6A /* red.jpeg */; };
+		F8EAC89E282C15B500DAE01D /* 3DLut.metal in Sources */ = {isa = PBXBuildFile; fileRef = F8EAC89D282C15B500DAE01D /* 3DLut.metal */; };
 		F8F168512826D0A700EDED37 /* File1.metal in Sources */ = {isa = PBXBuildFile; fileRef = F8F168502826D0A600EDED37 /* File1.metal */; };
 /* End PBXBuildFile section */
 
@@ -79,6 +80,7 @@
 		F83B8AA728140E6000C53E13 /* File.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = File.metal; sourceTree = "<group>"; };
 		F8E1069E28071EA8006F2A6A /* test.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = test.jpeg; sourceTree = "<group>"; };
 		F8E106A028072A8C006F2A6A /* red.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = red.jpeg; sourceTree = "<group>"; };
+		F8EAC89D282C15B500DAE01D /* 3DLut.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = 3DLut.metal; sourceTree = "<group>"; };
 		F8F168502826D0A600EDED37 /* File1.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = File1.metal; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -200,6 +202,7 @@
 				F807513E28229456004F2EB8 /* MetalImageView.m */,
 				F807514028229480004F2EB8 /* HobenShaderType.h */,
 				F8F168502826D0A600EDED37 /* File1.metal */,
+				F8EAC89D282C15B500DAE01D /* 3DLut.metal */,
 			);
 			path = Primitive;
 			sourceTree = "<group>";
@@ -339,6 +342,7 @@
 				F83B8A90280F0B2F00C53E13 /* Basic.cpp in Sources */,
 				F83B8A9D2813014700C53E13 /* RenderView.m in Sources */,
 				F807513A28218DD0004F2EB8 /* BlendRenderViewController.m in Sources */,
+				F8EAC89E282C15B500DAE01D /* 3DLut.metal in Sources */,
 				F83B8AA828140E6000C53E13 /* File.metal in Sources */,
 				F83B8AA02813017400C53E13 /* RenderViewController.m in Sources */,
 				F81DD5BA280697AB00097C6F /* ViewController.mm in Sources */,
