@@ -8,7 +8,7 @@
 #include <metal_stdlib>
 using namespace metal;
 #import "HobenShaderType.h"
-
+/*
 typedef struct {
     float4 vertexPosition [[ position ]];
     float2 textureCoorRgb;
@@ -50,3 +50,4 @@ float4 fragmentShader(RasterizerData input [[ stage_in]],
     float alpha = rgbFromYuv(input.textureColorAlpha, textureY, textureUV, convertMatrix).r;
     return  float4(rgb, alpha);
 }
+*/

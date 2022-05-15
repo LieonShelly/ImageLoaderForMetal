@@ -7,17 +7,17 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "F93ACE31-C3FB-43D3-BAF6-4F2A05484353"
+            uuid = "26AAE70E-1F1D-4605-ACE3-309B72BC8A7E"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "ImageModifer/Primitive/File.metal"
+            filePath = "ImageModifer/Primitive/3DLut.metal"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "32"
-            endingLineNumber = "32"
-            landmarkName = "unknown"
-            landmarkType = "0">
+            startingLineNumber = "43"
+            endingLineNumber = "43"
+            landmarkName = "lutFragment(VertexOut input [[ stage_in ]], texture2d&lt;float&gt; normalTexture [[ texture(0) ]], texture2d&lt;float&gt; lookupTableTexture [[ texture(1) ]], constant float &amp;intensity [[ buffer(0) ]])"
+            landmarkType = "9">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

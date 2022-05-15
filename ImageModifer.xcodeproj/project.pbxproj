@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		F807513A28218DD0004F2EB8 /* BlendRenderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F807513928218DD0004F2EB8 /* BlendRenderViewController.m */; };
 		F807513C28219278004F2EB8 /* template.png in Resources */ = {isa = PBXBuildFile; fileRef = F807513B28219278004F2EB8 /* template.png */; };
-		F807513F28229456004F2EB8 /* MetalImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = F807513E28229456004F2EB8 /* MetalImageView.m */; };
 		F81DD5B7280697AB00097C6F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F81DD5B6280697AB00097C6F /* AppDelegate.m */; };
 		F81DD5BA280697AB00097C6F /* ViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = F81DD5B9280697AB00097C6F /* ViewController.mm */; };
 		F81DD5BC280697AE00097C6F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F81DD5BB280697AE00097C6F /* Assets.xcassets */; };
@@ -27,6 +26,8 @@
 		F8E1069F28071EA8006F2A6A /* test.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = F8E1069E28071EA8006F2A6A /* test.jpeg */; };
 		F8E106A128072A8C006F2A6A /* red.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = F8E106A028072A8C006F2A6A /* red.jpeg */; };
 		F8EAC89E282C15B500DAE01D /* 3DLut.metal in Sources */ = {isa = PBXBuildFile; fileRef = F8EAC89D282C15B500DAE01D /* 3DLut.metal */; };
+		F8EAC8A2282D59F200DAE01D /* LutFilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F8EAC8A1282D59F200DAE01D /* LutFilterViewController.m */; };
+		F8EAC8A428314B5000DAE01D /* 3dlut.png in Resources */ = {isa = PBXBuildFile; fileRef = F8EAC8A328314B5000DAE01D /* 3dlut.png */; };
 		F8F168512826D0A700EDED37 /* File1.metal in Sources */ = {isa = PBXBuildFile; fileRef = F8F168502826D0A600EDED37 /* File1.metal */; };
 /* End PBXBuildFile section */
 
@@ -81,6 +82,9 @@
 		F8E1069E28071EA8006F2A6A /* test.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = test.jpeg; sourceTree = "<group>"; };
 		F8E106A028072A8C006F2A6A /* red.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = red.jpeg; sourceTree = "<group>"; };
 		F8EAC89D282C15B500DAE01D /* 3DLut.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = 3DLut.metal; sourceTree = "<group>"; };
+		F8EAC8A0282D59F200DAE01D /* LutFilterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LutFilterViewController.h; sourceTree = "<group>"; };
+		F8EAC8A1282D59F200DAE01D /* LutFilterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LutFilterViewController.m; sourceTree = "<group>"; };
+		F8EAC8A328314B5000DAE01D /* 3dlut.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3dlut.png; sourceTree = "<group>"; };
 		F8F168502826D0A600EDED37 /* File1.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = File1.metal; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -191,6 +195,7 @@
 		F83B8A992813000E00C53E13 /* Primitive */ = {
 			isa = PBXGroup;
 			children = (
+				F8EAC89F282D59CF00DAE01D /* LutFilter */,
 				F83B8A9B2813014700C53E13 /* RenderView.h */,
 				F83B8A9C2813014700C53E13 /* RenderView.m */,
 				F83B8A9E2813017400C53E13 /* RenderViewController.h */,
@@ -203,8 +208,18 @@
 				F807514028229480004F2EB8 /* HobenShaderType.h */,
 				F8F168502826D0A600EDED37 /* File1.metal */,
 				F8EAC89D282C15B500DAE01D /* 3DLut.metal */,
+				F8EAC8A328314B5000DAE01D /* 3dlut.png */,
 			);
 			path = Primitive;
+			sourceTree = "<group>";
+		};
+		F8EAC89F282D59CF00DAE01D /* LutFilter */ = {
+			isa = PBXGroup;
+			children = (
+				F8EAC8A0282D59F200DAE01D /* LutFilterViewController.h */,
+				F8EAC8A1282D59F200DAE01D /* LutFilterViewController.m */,
+			);
+			path = LutFilter;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -314,6 +329,7 @@
 				F81DD5BF280697AE00097C6F /* Main.storyboard in Resources */,
 				F8E106A128072A8C006F2A6A /* red.jpeg in Resources */,
 				F8E1069F28071EA8006F2A6A /* test.jpeg in Resources */,
+				F8EAC8A428314B5000DAE01D /* 3dlut.png in Resources */,
 				F807513C28219278004F2EB8 /* template.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -341,6 +357,7 @@
 			files = (
 				F83B8A90280F0B2F00C53E13 /* Basic.cpp in Sources */,
 				F83B8A9D2813014700C53E13 /* RenderView.m in Sources */,
+				F8EAC8A2282D59F200DAE01D /* LutFilterViewController.m in Sources */,
 				F807513A28218DD0004F2EB8 /* BlendRenderViewController.m in Sources */,
 				F8EAC89E282C15B500DAE01D /* 3DLut.metal in Sources */,
 				F83B8AA828140E6000C53E13 /* File.metal in Sources */,
@@ -349,7 +366,6 @@
 				F81DD5C1280697AE00097C6F /* main.m in Sources */,
 				F8F168512826D0A700EDED37 /* File1.metal in Sources */,
 				F81DD5B7280697AB00097C6F /* AppDelegate.m in Sources */,
-				F807513F28229456004F2EB8 /* MetalImageView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -24,8 +24,18 @@ typedef struct
 
 constant float stepSize = 0.5;
 
+vertex
+VertexOut lutVertex(const device VertexIn* vertexArray [[buffer(0)]],
+unsigned int vid  [[vertex_id]])
+{
+    VertexOut o;
+    o.position = vertexArray[vid ].position;
+    o.texCoords = vertexArray[vid].texCoords;
+    return o;
+}
+
 fragment
-float4 lutFragment(VertexIn input [[ stage_in ]],
+float4 lutFragment(VertexOut input [[ stage_in ]],
                    texture2d<float> normalTexture [[ texture(0) ]],
                    texture2d<float> lookupTableTexture [[ texture(1) ]],
                    constant float &intensity [[ buffer(0) ]]) {
