@@ -69,13 +69,13 @@ typedef struct {
     self.numVertices = sizeof(vertexArrayData) / sizeof(VertexIn);
     
     // 获取源文件位置
-    NSString * imgpath = [[NSBundle mainBundle]pathForImageResource:@"template.png"];
+    NSString * imgpath = [[NSBundle mainBundle]pathForImageResource:@"picture-this.jpeg"];
     MTKTextureLoader *loader = [[MTKTextureLoader alloc]initWithDevice:self.device];
     NSData *imageData = [NSData dataWithContentsOfFile: imgpath];
     _sourceTexture = [loader newTextureWithData:imageData options:nil error:nil];
     
     // 获取lut图片位置
-    NSString * lutImgPth = [[NSBundle mainBundle]pathForImageResource:@"3dlut.png"];
+    NSString * lutImgPth = [[NSBundle mainBundle]pathForImageResource:@"youhualut.png"];
     NSData *lutImageData = [NSData dataWithContentsOfFile: lutImgPth];
     _lutTexture = [loader newTextureWithData:lutImageData options:nil error:nil];
     
@@ -142,6 +142,7 @@ typedef struct {
     
     [commandBuffer presentDrawable:view.currentDrawable];
     [commandBuffer commit];
+    
 }
 
 - (void)mtkView:(nonnull MTKView *)view drawableSizeWillChange:(CGSize)size {
