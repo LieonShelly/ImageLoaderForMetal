@@ -26,7 +26,6 @@ typedef struct {
 @property(nonatomic, strong) id<MTLBuffer> pVertexPositionsBuffer;
 @property(nonatomic, strong) id<MTLTexture> sourceTexture;
 @property (nonatomic, assign) float scale;
-@property (nonatomic, assign) simd_float4x4 martix;
 @end
 
 @implementation ScaleFilterViewController
@@ -86,41 +85,15 @@ typedef struct {
 
 - (void)setupUIView {
     NSSlider *progress = [NSSlider sliderWithTarget:self action:@selector(sliderAction:)];
-    [progress setMaxValue:2.0];
-    [progress setMinValue:-2.0];
+    [progress setMaxValue:1.0];
+    [progress setMinValue:0.0];
     progress.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
     [self.view addSubview:progress];
-    
-    simd_float4x4 martix =  {
-        .columns[0] = simd_make_float4(1, 0, 0, 0),
-        .columns[1] = simd_make_float4(0, 1, 0, 0),
-        .columns[2] = simd_make_float4(0, 0, 1, 0),
-        .columns[3] = simd_make_float4(0, 0, 0, 1)
-    };
-    self.martix = martix;
 }
 
 - (void)sliderAction:(NSSlider*)slider {
     float progress = slider.floatValue;
     self.scale = progress;
-    /**
-     {
-         .columns[0] = simd_make_float4(1, 0, 0, 0),
-         .columns[1] = simd_make_float4(0, 1, 0, 0),
-         .columns[2] = simd_make_float4(0, 0, 1, 0),
-         .columns[3] = simd_make_float4(progress, 0, 0, 1)
-     }
-     
-     */
-
-    simd_float4x4 martix =  {
-        .columns[0] = simd_make_float4(1, 0, 0, 0),
-        .columns[1] = simd_make_float4(0, 1, 0, 0),
-        .columns[2] = simd_make_float4(0, 0, 1, 0),
-        .columns[3] = simd_make_float4(progress, progress, 0, 1)
-    };
-    self.martix = martix;
-
 }
 
 
@@ -130,7 +103,7 @@ typedef struct {
 
 - (void)setupPipeline {
     id<MTLLibrary> defaultLibrary = [_device newDefaultLibrary];
-    id<MTLFunction> vertexFunc = [defaultLibrary newFunctionWithName:@"translateVertex"];
+    id<MTLFunction> vertexFunc = [defaultLibrary newFunctionWithName:@"zoomVertex"];
     id<MTLFunction> fragmentFunc = [defaultLibrary newFunctionWithName:@"zoomFragment"];
     
     MTLRenderPipelineDescriptor *pipelineDesc = [[MTLRenderPipelineDescriptor alloc] init];
@@ -153,9 +126,15 @@ typedef struct {
 
     [commandEncoder setFragmentTexture:_sourceTexture atIndex:0];
     // 设置常量，对应shader中 constant 类型
-  
-    [commandEncoder setVertexBytes:&_martix length:sizeof(_martix) atIndex:1];
-//    [commandEncoder setVertexBytes:&_scale length:sizeof(_scale) atIndex:1];
+    simd_float4x4 martrix = {
+        .columns[0] = simd_make_float4(1, 0, 0, 0),
+        .columns[1] = simd_make_float4(0, 1, 0, 0),
+        .columns[2] = simd_make_float4(0, 0, 1, 0),
+        .columns[3] = simd_make_float4(1, 0, 0, 1)
+    };
+
+//    [commandEncoder setVertexBytes:&martrix length:sizeof(martrix) atIndex:1];
+    [commandEncoder setVertexBytes:&_scale length:sizeof(_scale) atIndex:1];
     
     [commandEncoder drawPrimitives:MTLPrimitiveTypeTriangleStrip vertexStart:0 vertexCount:self.numVertices];
     [commandEncoder endEncoding];
