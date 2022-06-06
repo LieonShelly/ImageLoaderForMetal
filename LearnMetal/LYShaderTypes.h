@@ -15,6 +15,7 @@ typedef struct
 {
     vector_float4 position;
     vector_float2 textureCoordinate;
+    vector_float3 color; // 颜色
 } LYVertex;
 
 
@@ -37,6 +38,11 @@ typedef enum LYFragmentTextureIndex
 } LYFragmentTextureIndex;
 
 
+typedef struct
+{
+    matrix_float4x4 projectionMatrix; // 投影变换
+    matrix_float4x4 modelViewMatrix; // 模型变换
+} LYMatrix;
 
 
 #endif /* LYShaderTypes_h */
