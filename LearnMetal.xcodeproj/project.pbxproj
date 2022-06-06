@@ -20,6 +20,8 @@
 		F8AA67CB283A8D9C009D4493 /* HAHAViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F8AA67CA283A8D9C009D4493 /* HAHAViewController.m */; };
 		F8AA67CD283A8F84009D4493 /* HahaShader.metal in Sources */ = {isa = PBXBuildFile; fileRef = F8AA67CC283A8F84009D4493 /* HahaShader.metal */; };
 		F8AA67D1283BEB82009D4493 /* GrayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F8AA67D0283BEB82009D4493 /* GrayViewController.m */; };
+		F8AC1EAB284E4ECF00DBE048 /* ThreadHold.metal in Sources */ = {isa = PBXBuildFile; fileRef = F8AC1EAA284E4ECF00DBE048 /* ThreadHold.metal */; };
+		F8AC1EAE284E502B00DBE048 /* TemplateCameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F8AC1EAD284E502B00DBE048 /* TemplateCameraViewController.m */; };
 		F8B4E559283E8857000C0312 /* EdgeDetectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F8B4E558283E8857000C0312 /* EdgeDetectViewController.m */; };
 		FD68897420DB40C7002F8137 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FD68897320DB40C7002F8137 /* AppDelegate.m */; };
 		FD68897720DB40C7002F8137 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD68897620DB40C7002F8137 /* ViewController.m */; };
@@ -50,6 +52,9 @@
 		F8AA67CC283A8F84009D4493 /* HahaShader.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = HahaShader.metal; sourceTree = "<group>"; };
 		F8AA67CF283BEB82009D4493 /* GrayViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GrayViewController.h; sourceTree = "<group>"; };
 		F8AA67D0283BEB82009D4493 /* GrayViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GrayViewController.m; sourceTree = "<group>"; };
+		F8AC1EAA284E4ECF00DBE048 /* ThreadHold.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = ThreadHold.metal; sourceTree = "<group>"; };
+		F8AC1EAC284E502B00DBE048 /* TemplateCameraViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TemplateCameraViewController.h; sourceTree = "<group>"; };
+		F8AC1EAD284E502B00DBE048 /* TemplateCameraViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TemplateCameraViewController.m; sourceTree = "<group>"; };
 		F8B4E557283E8857000C0312 /* EdgeDetectViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EdgeDetectViewController.h; sourceTree = "<group>"; };
 		F8B4E558283E8857000C0312 /* EdgeDetectViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EdgeDetectViewController.m; sourceTree = "<group>"; };
 		FD68896F20DB40C7002F8137 /* LearnMetal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LearnMetal.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -166,6 +171,9 @@
 				F835C3A4284514A40081DCA9 /* SobelShader.metal */,
 				F835C3A62847CA7A0081DCA9 /* GreenVideo.metal */,
 				F835C3B9284CC9600081DCA9 /* SkyBox.metal */,
+				F8AC1EAA284E4ECF00DBE048 /* ThreadHold.metal */,
+				F8AC1EAC284E502B00DBE048 /* TemplateCameraViewController.h */,
+				F8AC1EAD284E502B00DBE048 /* TemplateCameraViewController.m */,
 			);
 			path = LearnMetal;
 			sourceTree = "<group>";
@@ -271,11 +279,13 @@
 				FD68897720DB40C7002F8137 /* ViewController.m in Sources */,
 				F8B4E559283E8857000C0312 /* EdgeDetectViewController.m in Sources */,
 				F8AA67CD283A8F84009D4493 /* HahaShader.metal in Sources */,
+				F8AC1EAB284E4ECF00DBE048 /* ThreadHold.metal in Sources */,
 				FD68898220DB40CA002F8137 /* main.m in Sources */,
 				F8AA67CB283A8D9C009D4493 /* HAHAViewController.m in Sources */,
 				FD68897420DB40C7002F8137 /* AppDelegate.m in Sources */,
 				F835C3A5284514A40081DCA9 /* SobelShader.metal in Sources */,
 				F8AA67D1283BEB82009D4493 /* GrayViewController.m in Sources */,
+				F8AC1EAE284E502B00DBE048 /* TemplateCameraViewController.m in Sources */,
 				F835C3A72847CA7A0081DCA9 /* GreenVideo.metal in Sources */,
 				F835C3BA284CC9600081DCA9 /* SkyBox.metal in Sources */,
 			);

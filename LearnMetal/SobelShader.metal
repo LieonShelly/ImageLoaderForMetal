@@ -67,10 +67,10 @@ void sobelkernel(texture2d<half, access::read> sourceTexture [[ texture(0) ]],
     half  grayV  = dot(v.rgb, kRec709Luma); // 转换成亮度
     
     // sqrt(h^2 + v^2)，相当于求点到(h, v)的距离，所以可以用length
-    half color = length(half2(grayH, grayV));
+//    half color = length(half2(grayH, grayV));
 
-    destTexture.write(half4(color, color, color, 1.0), grid); // 写回对应纹理
-//    half4 color = sourceTexture.read(grid);//length(half2(grayH, grayV));
+//    destTexture.write(half4(color, color, color, 1.0), grid); // 写回对应纹理
+    half4 color = sourceTexture.read(grid);//length(half2(grayH, grayV));
 //
-//    destTexture.write(color, grid); // 写回对应纹理
+    destTexture.write(color, grid); // 写回对应纹理
 }

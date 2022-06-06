@@ -11,6 +11,11 @@
 
 #include <simd/simd.h>
 
+#define MIN2(a, b) ((a) < (b) ? (a) : (b))
+#define MAX2(a, b) ((a) > (b) ? (a) : (b))
+#define CLIP3(x, a, b) MIN2(MAX2(a,x), b)
+
+
 typedef struct
 {
     vector_float4 position;
@@ -43,6 +48,8 @@ typedef struct
     matrix_float4x4 projectionMatrix; // 投影变换
     matrix_float4x4 modelViewMatrix; // 模型变换
 } LYMatrix;
+
+
 
 
 #endif /* LYShaderTypes_h */

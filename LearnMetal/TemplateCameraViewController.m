@@ -1,19 +1,20 @@
 //
-//  EdgeDetectViewController.m
+//  TemplateCameraViewController.m
 //  LearnMetal
 //
-//  Created by Renjun Li on 2022/5/25.
+//  Created by Renjun Li on 2022/6/6.
 //  Copyright © 2022 loyinglin. All rights reserved.
 //
 
-#import "EdgeDetectViewController.h"
+
+#import "TemplateCameraViewController.h"
 @import MetalKit;
 @import AVFoundation;
 #import "LYShaderTypes.h"
 #import <MetalPerformanceShaders/MetalPerformanceShaders.h>
 
 
-@interface EdgeDetectViewController ()<AVCaptureVideoDataOutputSampleBufferDelegate, MTKViewDelegate>
+@interface TemplateCameraViewController ()<AVCaptureVideoDataOutputSampleBufferDelegate, MTKViewDelegate>
 
 // view
 @property (nonatomic, strong) MTKView *mtkView;
@@ -36,7 +37,7 @@
 @property (nonatomic, assign) MTLSize groupCount;
 @end
 
-@implementation EdgeDetectViewController
+@implementation TemplateCameraViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -170,46 +171,6 @@
     if (!self.sourceTexture) {
         return;
     }
-    id<MTLCommandBuffer> commandBuffer = [self.commandQueue commandBuffer];
-//    // 创建计算指令的编码器
-//    {
-//        id<MTLComputeCommandEncoder> computeEncoder = [commandBuffer computeCommandEncoder];
-//        // 设置计算管道，以调用shaders.metal中的内核计算函数
-//        [computeEncoder setComputePipelineState:self.computePipelineState];
-//        // 输入纹理
-//        [computeEncoder setTexture:self.sourceTexture atIndex:0];
-//        // 输出纹理
-//        [computeEncoder setTexture:self.destTexture atIndex:1];
-//        // 计算区域
-//        [computeEncoder dispatchThreadgroups:self.groupCount threadsPerThreadgroup:self.groupSize];
-//        // 调用endEncoding释放编码器，下个encoder才能创建
-//        [computeEncoder endEncoding];
-//    }
-    // 创建渲染指令的编码器
-    {
-        MTLRenderPassDescriptor *renderPassDescriptor = view.currentRenderPassDescriptor;
-        if (renderPassDescriptor != nil) {
-            renderPassDescriptor.colorAttachments[0].clearColor = MTLClearColorMake(0.0, 0.5, 0.5, 1.0f); // 设置默认颜色
-            id<MTLRenderCommandEncoder> renderEncoder = [commandBuffer renderCommandEncoderWithDescriptor:renderPassDescriptor]; //编码绘制指令的Encoder
-            [renderEncoder setViewport:(MTLViewport){0.0, 0.0, self.viewportSize.x, self.viewportSize.y, -1.0, 1.0 }]; // 设置显示区域
-            [renderEncoder setRenderPipelineState:self.renderPipelineState]; // 设置渲染管道，以保证顶点和片元两个shader会被调用
-            
-            [renderEncoder setVertexBuffer:self.vertices
-                                    offset:0
-                                   atIndex:0]; // 设置顶点缓存
-            
-            [renderEncoder setFragmentTexture:self.sourceTexture
-                                      atIndex:0]; // 设置纹理
-            
-            [renderEncoder drawPrimitives:MTLPrimitiveTypeTriangle
-                              vertexStart:0
-                              vertexCount:self.numVertices]; // 绘制
-            
-            [renderEncoder endEncoding]; // 结束
-            
-            [commandBuffer presentDrawable:view.currentDrawable]; // 显示
-        }
-        [commandBuffer commit]; // 提交；
-    }
 }
 @end
+
