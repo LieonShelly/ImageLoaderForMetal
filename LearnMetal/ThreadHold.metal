@@ -63,3 +63,28 @@ float4 brightContrastSaturationSamplingShader(RasterizerData input [[ stage_in ]
     float3 color2 = float3(dot(color1.rgb, luminanceWeighting));
     return float4(mix(color2, color1.rgb, saturation), colorSample.w);
 }
+
+
+fragment
+float4 saturationSamplingShader(RasterizerData input [[ stage_in ]],
+                           texture2d<half> colorTexture [[ texture(0) ]]) {
+    // 创建采样器
+    constexpr sampler textureSampler (mag_filter::linear, min_filter::linear);
+    half4 colorSample = colorTexture.sample(textureSampler, input.textureCoordinate);
+    float rgbMax = max(colorSample.r, max(colorSample.g, colorSample.b)) * 255;
+    float rgbMin = min(colorSample.r, min(colorSample.g, colorSample.b)) * 255;
+    float L = (rgbMax + rgbMin) * 0.5;
+    float S = 128 * (rgbMax -rgbMin) / (510 - (rgbMax + rgbMin));
+    if (L < 128) {
+        S = 128 * (rgbMax -rgbMin) / (rgbMax + rgbMin);
+    }
+    float saturation = 50; //(0, 100)
+    float k = saturation * 128.0 / 100.0;
+    float alpha = k;
+    if (k >= 0) {
+        alpha = (k + S) >= 128 ? S : (128 - k);
+        alpha = 128 * 128 / alpha - 128;
+    }
+    float3 RGBN = float3(colorSample.rgb) + (float3(colorSample.rgb) - float3(L)) * alpha / 128;
+    return float4(RGBN, 1.0);
+}
