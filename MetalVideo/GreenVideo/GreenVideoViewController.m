@@ -3,7 +3,7 @@
 //  LearnMetal
 //
 //  Created by Renjun Li on 2022/6/4.
-//  Copyright © 2022 loyinglin. All rights reserved.
+//  Copyright © 2022 renjun. All rights reserved.
 //
 
 #import "GreenVideoViewController.h"
