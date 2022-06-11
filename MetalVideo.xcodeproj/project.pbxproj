@@ -7,12 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F80F3F5C2854A02200572DE5 /* 2263.MP4 in Resources */ = {isa = PBXBuildFile; fileRef = F80F3F5B2854A02200572DE5 /* 2263.MP4 */; };
 		F835C3A5284514A40081DCA9 /* SobelShader.metal in Sources */ = {isa = PBXBuildFile; fileRef = F835C3A4284514A40081DCA9 /* SobelShader.metal */; };
 		F835C3A72847CA7A0081DCA9 /* GreenVideo.metal in Sources */ = {isa = PBXBuildFile; fileRef = F835C3A62847CA7A0081DCA9 /* GreenVideo.metal */; };
 		F835C3AB284BA9670081DCA9 /* GreenVideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F835C3AA284BA9670081DCA9 /* GreenVideoViewController.m */; };
 		F835C3AE284BAB200081DCA9 /* AssetReader.m in Sources */ = {isa = PBXBuildFile; fileRef = F835C3AD284BAB200081DCA9 /* AssetReader.m */; };
-		F835C3B3284BBEA10081DCA9 /* greenscreen.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = F835C3B1284BBEA00081DCA9 /* greenscreen.mp4 */; };
-		F835C3B4284BBEA10081DCA9 /* abc.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = F835C3B2284BBEA00081DCA9 /* abc.mp4 */; };
 		F835C3B8284CBDA60081DCA9 /* SkyBoxViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F835C3B7284CBDA60081DCA9 /* SkyBoxViewController.m */; };
 		F835C3BA284CC9600081DCA9 /* SkyBox.metal in Sources */ = {isa = PBXBuildFile; fileRef = F835C3B9284CC9600081DCA9 /* SkyBox.metal */; };
 		F835C3BC284CC9C70081DCA9 /* image.png in Resources */ = {isa = PBXBuildFile; fileRef = F835C3BB284CC9C70081DCA9 /* image.png */; };
@@ -34,14 +33,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F80F3F5B2854A02200572DE5 /* 2263.MP4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = 2263.MP4; sourceTree = "<group>"; };
 		F835C3A4284514A40081DCA9 /* SobelShader.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = SobelShader.metal; sourceTree = "<group>"; };
 		F835C3A62847CA7A0081DCA9 /* GreenVideo.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = GreenVideo.metal; sourceTree = "<group>"; };
 		F835C3A9284BA9670081DCA9 /* GreenVideoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GreenVideoViewController.h; sourceTree = "<group>"; };
 		F835C3AA284BA9670081DCA9 /* GreenVideoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GreenVideoViewController.m; sourceTree = "<group>"; };
 		F835C3AC284BAB200081DCA9 /* AssetReader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AssetReader.h; sourceTree = "<group>"; };
 		F835C3AD284BAB200081DCA9 /* AssetReader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AssetReader.m; sourceTree = "<group>"; };
-		F835C3B1284BBEA00081DCA9 /* greenscreen.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = greenscreen.mp4; sourceTree = "<group>"; };
-		F835C3B2284BBEA00081DCA9 /* abc.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = abc.mp4; sourceTree = "<group>"; };
 		F835C3B6284CBDA60081DCA9 /* SkyBoxViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SkyBoxViewController.h; sourceTree = "<group>"; };
 		F835C3B7284CBDA60081DCA9 /* SkyBoxViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SkyBoxViewController.m; sourceTree = "<group>"; };
 		F835C3B9284CC9600081DCA9 /* SkyBox.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = SkyBox.metal; sourceTree = "<group>"; };
@@ -87,8 +85,7 @@
 		F835C3A8284BA94E0081DCA9 /* GreenVideo */ = {
 			isa = PBXGroup;
 			children = (
-				F835C3B2284BBEA00081DCA9 /* abc.mp4 */,
-				F835C3B1284BBEA00081DCA9 /* greenscreen.mp4 */,
+				F80F3F5B2854A02200572DE5 /* 2263.MP4 */,
 				F835C3A9284BA9670081DCA9 /* GreenVideoViewController.h */,
 				F835C3AA284BA9670081DCA9 /* GreenVideoViewController.m */,
 				F835C3AC284BAB200081DCA9 /* AssetReader.h */,
@@ -255,10 +252,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F835C3B4284BBEA10081DCA9 /* abc.mp4 in Resources */,
 				F8AA67C7283A8BE7009D4493 /* abc.jpeg in Resources */,
-				F835C3B3284BBEA10081DCA9 /* greenscreen.mp4 in Resources */,
 				FD68897F20DB40CA002F8137 /* LaunchScreen.storyboard in Resources */,
+				F80F3F5C2854A02200572DE5 /* 2263.MP4 in Resources */,
 				F835C3BC284CC9C70081DCA9 /* image.png in Resources */,
 				FD68897C20DB40CA002F8137 /* Assets.xcassets in Resources */,
 				FD68897A20DB40C7002F8137 /* Main.storyboard in Resources */,

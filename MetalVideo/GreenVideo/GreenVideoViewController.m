@@ -43,21 +43,29 @@
     [self setupPipeline];
     [self setupVertex];
     [self setupReader];
+    
+    CADisplayLink * link = [CADisplayLink displayLinkWithTarget:self selector:@selector(renderAction:)];
+    [link addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSRunLoopCommonModes];
+}
+
+- (void)renderAction:(CADisplayLink*)displayLink {
+    
+    float actualFramesPerSecond =  1 / (displayLink.targetTimestamp - displayLink.timestamp);
+
 }
 
 - (void)setupReader {
-    self.greenReader = [[AssetReader alloc] initWithUrl:[[NSBundle mainBundle] URLForResource:@"greenscreen" withExtension:@"mp4"]];
-    self.normalReader = [[AssetReader alloc] initWithUrl:[[NSBundle mainBundle] URLForResource:@"abc" withExtension:@"mp4"]];
-
+    self.normalReader = [[AssetReader alloc] initWithUrl:[[NSBundle mainBundle] URLForResource:@"2263.MP4" withExtension:nil]];
 }
 
 - (void)setupMtkView {
     self.mtkView = [[MTKView alloc] initWithFrame:self.view.bounds];
     self.mtkView.device = MTLCreateSystemDefaultDevice(); // 获取默认的device
-    self.view = self.mtkView;
+    [self.view insertSubview:self.mtkView atIndex:0];
+    self.mtkView.translatesAutoresizingMaskIntoConstraints = false;
     self.mtkView.delegate = self;
     self.viewportSize = (vector_uint2){self.mtkView.drawableSize.width, self.mtkView.drawableSize.height};
-    self.mtkView.preferredFramesPerSecond = 30;
+    self.mtkView.preferredFramesPerSecond = 10;
     CVMetalTextureCacheCreate(NULL, NULL, self.mtkView.device, NULL, &_textureCache); // TextureCache的创建
 }
 
@@ -125,9 +133,8 @@
     id<MTLCommandBuffer> commandBuffer = [self.commandQueue commandBuffer];
     MTLRenderPassDescriptor *renderPassDescriptor = view.currentRenderPassDescriptor;
     // MTLRenderPassDescriptor描述一系列attachments的值，类似GL的FrameBuffer；同时也用来创建MTLRenderCommandEncoder
-    CMSampleBufferRef greenSampleBuffer = [self.greenReader readBuffer]; // 从LYAssetReader中读取图像数据
-    CMSampleBufferRef normalSampleBuffer = [self.normalReader readBuffer]; // 从LYAssetReader中读取图像数据
-    if(renderPassDescriptor && greenSampleBuffer && normalSampleBuffer)
+    CMSampleBufferRef normalSampleBuffer = [self.normalReader readBufferWithStartTime:1]; // 从LYAssetReader中读取图像数据
+    if(renderPassDescriptor && normalSampleBuffer)
     {
         renderPassDescriptor.colorAttachments[0].clearColor = MTLClearColorMake(0.0, 0.5, 0.5, 1.0f); // 设置默认颜色
         id<MTLRenderCommandEncoder> renderEncoder = [commandBuffer renderCommandEncoderWithDescriptor:renderPassDescriptor]; //编码绘制指令的Encoder
@@ -138,8 +145,7 @@
                                 offset:0
                                atIndex:LYVertexInputIndexVertices]; // 设置顶点缓存
         
-        [self setupTextureWithEncoder:renderEncoder buffer:greenSampleBuffer isGreen:YES];
-        [self setupTextureWithEncoder:renderEncoder buffer:normalSampleBuffer isGreen:NO];
+        [self setupTextureWithEncoder:renderEncoder buffer:normalSampleBuffer];
         
         [renderEncoder setFragmentBuffer:self.convertMatrix
                                   offset:0
@@ -158,7 +164,7 @@
 }
 
 
-- (void)setupTextureWithEncoder:(id<MTLRenderCommandEncoder>)encoder buffer:(CMSampleBufferRef)sampleBuffer isGreen:(BOOL)isGreen {
+- (void)setupTextureWithEncoder:(id<MTLRenderCommandEncoder>)encoder buffer:(CMSampleBufferRef)sampleBuffer {
     CVPixelBufferRef pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer);
     id<MTLTexture> textureY = nil;
     id<MTLTexture> textureUV = nil;
@@ -187,20 +193,10 @@
             CFRelease(texture);
         }
     }
-    if (textureY != nil && textureUV != nil) {
-        if (isGreen) {
-            [encoder setFragmentTexture:textureY
-                                atIndex:0]; // 设置纹理
-            [encoder setFragmentTexture:textureUV
-                                atIndex:1]; // 设置纹理
-        }
-        else {
-            [encoder setFragmentTexture:textureY
-                                atIndex:2]; // 设置纹理
-            [encoder setFragmentTexture:textureUV
-                                atIndex:3]; // 设置纹理
-        }
-    }
+    [encoder setFragmentTexture:textureY
+                        atIndex:0]; // 设置纹理
+    [encoder setFragmentTexture:textureUV
+                        atIndex:1]; // 设置纹理
     CFRelease(sampleBuffer);
 }
 @end

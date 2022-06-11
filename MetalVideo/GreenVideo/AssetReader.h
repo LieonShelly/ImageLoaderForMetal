@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface AssetReader : NSObject
 
 - (instancetype)initWithUrl:(NSURL*)url;
-- (CMSampleBufferRef)readBuffer;
+- (CMSampleBufferRef)readBufferWithStartTime:(double)startTime;
 @end
 
 NS_ASSUME_NONNULL_END

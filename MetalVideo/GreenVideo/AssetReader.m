@@ -14,6 +14,12 @@
     AVAssetReader   *assetReader;
     NSURL *videoUrl;
     NSLock *lock;
+    AVAsset *inputAsset;
+    CGSize previewOutSize;
+    BOOL initedDecoder;
+    BOOL released;
+    AVAssetTrack *videoTrack;
+    float fps;
 }
 
 - (instancetype)initWithUrl:(NSURL *)url {
@@ -26,23 +32,23 @@
 
 - (void)customInit {
     NSDictionary *inputOptions = [NSDictionary dictionaryWithObject:[NSNumber numberWithBool:YES] forKey:AVURLAssetPreferPreciseDurationAndTimingKey];
-    AVURLAsset *inputAsset = [[AVURLAsset alloc] initWithURL:videoUrl options:inputOptions];
+    inputAsset = [[AVURLAsset alloc] initWithURL:videoUrl options:inputOptions];
     __weak typeof(self) weakSelf = self;
     [inputAsset loadValuesAsynchronouslyForKeys:[NSArray arrayWithObject:@"tracks"] completionHandler: ^{
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             NSError *error = nil;
-            AVKeyValueStatus tracksStatus = [inputAsset statusOfValueForKey:@"tracks" error:&error];
+            AVKeyValueStatus tracksStatus = [self->inputAsset statusOfValueForKey:@"tracks" error:&error];
             if (tracksStatus != AVKeyValueStatusLoaded)
             {
                 NSLog(@"error %@", error);
                 return;
             }
-            [weakSelf processWithAsset:inputAsset];
+            [weakSelf processWithAsset:self->inputAsset startTime: 1];
         });
     }];
 }
 
-- (void)processWithAsset:(AVAsset *)asset
+- (void)processWithAsset:(AVAsset *)asset startTime:(double)startTime
 {
     [lock lock];
     NSLog(@"processWithAsset");
@@ -52,12 +58,14 @@
     NSMutableDictionary *outputSettings = [NSMutableDictionary dictionary];
     
     [outputSettings setObject:@(kCVPixelFormatType_420YpCbCr8BiPlanarFullRange) forKey:(id)kCVPixelBufferPixelFormatTypeKey];
+    [outputSettings setObject:@(kCVPixelFormatType_420YpCbCr8BiPlanarFullRange) forKey:(id)kCVPixelBufferPixelFormatTypeKey];
     
     readerVideoTrackOutput = [AVAssetReaderTrackOutput assetReaderTrackOutputWithTrack:[[asset tracksWithMediaType:AVMediaTypeVideo] objectAtIndex:0] outputSettings:outputSettings];
     readerVideoTrackOutput.alwaysCopiesSampleData = NO;
     [assetReader addOutput:readerVideoTrackOutput];
 
-    
+    CMTime pos = CMTimeMakeWithSeconds(startTime, inputAsset.duration.timescale);
+    assetReader.timeRange = CMTimeRangeMake(pos, CMTimeMakeWithSeconds(1, 1));
     if ([assetReader startReading] == NO)
     {
         NSLog(@"Error reading from file at URL: %@", asset);
@@ -65,7 +73,7 @@
     [lock unlock];
 }
 
-- (CMSampleBufferRef)readBuffer {
+- (CMSampleBufferRef)readBufferWithStartTime:(double)startTime {
     [lock lock];
     CMSampleBufferRef sampleBufferRef = nil;
     
@@ -83,6 +91,5 @@
     [lock unlock];
     return sampleBufferRef;
 }
-
 @end
 
