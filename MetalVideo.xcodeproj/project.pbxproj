@@ -15,6 +15,11 @@
 		F835C3B8284CBDA60081DCA9 /* SkyBoxViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F835C3B7284CBDA60081DCA9 /* SkyBoxViewController.m */; };
 		F835C3BA284CC9600081DCA9 /* SkyBox.metal in Sources */ = {isa = PBXBuildFile; fileRef = F835C3B9284CC9600081DCA9 /* SkyBox.metal */; };
 		F835C3BC284CC9C70081DCA9 /* image.png in Resources */ = {isa = PBXBuildFile; fileRef = F835C3BB284CC9C70081DCA9 /* image.png */; };
+		F83DEEA7285A32E20037EF4A /* VideoToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F83DEEA6285A32E20037EF4A /* VideoToolbox.framework */; };
+		F83DEEAA285A34B40037EF4A /* H264Encoder.m in Sources */ = {isa = PBXBuildFile; fileRef = F83DEEA9285A34B40037EF4A /* H264Encoder.m */; };
+		F83DEEAC285A35350037EF4A /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F83DEEAB285A35350037EF4A /* CoreMedia.framework */; };
+		F87432E628621B57003BDC05 /* H264Decoder.m in Sources */ = {isa = PBXBuildFile; fileRef = F87432E528621B57003BDC05 /* H264Decoder.m */; };
+		F876CEF128749744009AB57B /* abc.h264 in Resources */ = {isa = PBXBuildFile; fileRef = F876CEF028749744009AB57B /* abc.h264 */; };
 		F8AA67C7283A8BE7009D4493 /* abc.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = F8AA67C6283A8BE7009D4493 /* abc.jpeg */; };
 		F8AA67CB283A8D9C009D4493 /* HAHAViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F8AA67CA283A8D9C009D4493 /* HAHAViewController.m */; };
 		F8AA67CD283A8F84009D4493 /* HahaShader.metal in Sources */ = {isa = PBXBuildFile; fileRef = F8AA67CC283A8F84009D4493 /* HahaShader.metal */; };
@@ -44,6 +49,13 @@
 		F835C3B7284CBDA60081DCA9 /* SkyBoxViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SkyBoxViewController.m; sourceTree = "<group>"; };
 		F835C3B9284CC9600081DCA9 /* SkyBox.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = SkyBox.metal; sourceTree = "<group>"; };
 		F835C3BB284CC9C70081DCA9 /* image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image.png; sourceTree = "<group>"; };
+		F83DEEA6285A32E20037EF4A /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = System/Library/Frameworks/VideoToolbox.framework; sourceTree = SDKROOT; };
+		F83DEEA8285A34B40037EF4A /* H264Encoder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = H264Encoder.h; sourceTree = "<group>"; };
+		F83DEEA9285A34B40037EF4A /* H264Encoder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = H264Encoder.m; sourceTree = "<group>"; };
+		F83DEEAB285A35350037EF4A /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		F87432E428621B57003BDC05 /* H264Decoder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = H264Decoder.h; sourceTree = "<group>"; };
+		F87432E528621B57003BDC05 /* H264Decoder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = H264Decoder.m; sourceTree = "<group>"; };
+		F876CEF028749744009AB57B /* abc.h264 */ = {isa = PBXFileReference; lastKnownFileType = file; path = abc.h264; sourceTree = "<group>"; };
 		F8AA67C6283A8BE7009D4493 /* abc.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = abc.jpeg; sourceTree = "<group>"; };
 		F8AA67C9283A8D9C009D4493 /* HAHAViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HAHAViewController.h; sourceTree = "<group>"; };
 		F8AA67CA283A8D9C009D4493 /* HAHAViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HAHAViewController.m; sourceTree = "<group>"; };
@@ -75,6 +87,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F83DEEAC285A35350037EF4A /* CoreMedia.framework in Frameworks */,
+				F83DEEA7285A32E20037EF4A /* VideoToolbox.framework in Frameworks */,
 				FD68898D20DB432A002F8137 /* MetalKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -86,6 +100,7 @@
 			isa = PBXGroup;
 			children = (
 				F80F3F5B2854A02200572DE5 /* 2263.MP4 */,
+				F876CEF028749744009AB57B /* abc.h264 */,
 				F835C3A9284BA9670081DCA9 /* GreenVideoViewController.h */,
 				F835C3AA284BA9670081DCA9 /* GreenVideoViewController.m */,
 				F835C3AC284BAB200081DCA9 /* AssetReader.h */,
@@ -127,6 +142,10 @@
 			children = (
 				F8B4E557283E8857000C0312 /* EdgeDetectViewController.h */,
 				F8B4E558283E8857000C0312 /* EdgeDetectViewController.m */,
+				F83DEEA8285A34B40037EF4A /* H264Encoder.h */,
+				F83DEEA9285A34B40037EF4A /* H264Encoder.m */,
+				F87432E428621B57003BDC05 /* H264Decoder.h */,
+				F87432E528621B57003BDC05 /* H264Decoder.m */,
 			);
 			path = EdgeDetect;
 			sourceTree = "<group>";
@@ -178,6 +197,8 @@
 		FD68898B20DB4329002F8137 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F83DEEAB285A35350037EF4A /* CoreMedia.framework */,
+				F83DEEA6285A32E20037EF4A /* VideoToolbox.framework */,
 				FD68898C20DB4329002F8137 /* MetalKit.framework */,
 			);
 			name = Frameworks;
@@ -256,6 +277,7 @@
 				FD68897F20DB40CA002F8137 /* LaunchScreen.storyboard in Resources */,
 				F80F3F5C2854A02200572DE5 /* 2263.MP4 in Resources */,
 				F835C3BC284CC9C70081DCA9 /* image.png in Resources */,
+				F876CEF128749744009AB57B /* abc.h264 in Resources */,
 				FD68897C20DB40CA002F8137 /* Assets.xcassets in Resources */,
 				FD68897A20DB40C7002F8137 /* Main.storyboard in Resources */,
 			);
@@ -274,6 +296,7 @@
 				F835C3B8284CBDA60081DCA9 /* SkyBoxViewController.m in Sources */,
 				FD68897720DB40C7002F8137 /* ViewController.m in Sources */,
 				F8B4E559283E8857000C0312 /* EdgeDetectViewController.m in Sources */,
+				F87432E628621B57003BDC05 /* H264Decoder.m in Sources */,
 				F8AA67CD283A8F84009D4493 /* HahaShader.metal in Sources */,
 				F8AC1EAB284E4ECF00DBE048 /* ThreadHold.metal in Sources */,
 				FD68898220DB40CA002F8137 /* main.m in Sources */,
@@ -284,6 +307,7 @@
 				F8AC1EAE284E502B00DBE048 /* TemplateCameraViewController.m in Sources */,
 				F835C3A72847CA7A0081DCA9 /* GreenVideo.metal in Sources */,
 				F835C3BA284CC9600081DCA9 /* SkyBox.metal in Sources */,
+				F83DEEAA285A34B40037EF4A /* H264Encoder.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

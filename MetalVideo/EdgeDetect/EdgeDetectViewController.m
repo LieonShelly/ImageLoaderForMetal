@@ -11,7 +11,9 @@
 @import AVFoundation;
 #import "LYShaderTypes.h"
 #import <MetalPerformanceShaders/MetalPerformanceShaders.h>
-
+#import <VideoToolBox/VideoToolBox.h>
+#import "H264Encoder.h"
+#import "H264Decoder.h"
 
 @interface EdgeDetectViewController ()<AVCaptureVideoDataOutputSampleBufferDelegate, MTKViewDelegate>
 
@@ -34,18 +36,74 @@
 @property (nonatomic, assign) NSUInteger numVertices;
 @property (nonatomic, assign) MTLSize groupSize;
 @property (nonatomic, assign) MTLSize groupCount;
+
+@property (nonatomic, strong) H264Encoder * encoder;
+
+@property (nonatomic , strong) CADisplayLink *mDispalyLink;
+@property (nonatomic, strong) H264Decoder * decoder;
 @end
 
 @implementation EdgeDetectViewController
+{
+    dispatch_queue_t mEncodeQueue;
+}
+
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    mEncodeQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    self.encoder = [H264Encoder new];
+    self.decoder = [H264Decoder new];
+    [self.decoder onInputStart];
     [self setupMtkView];
-    [self setupCaptureSession];
+//    [self setupCaptureSession];
     [self setupPipeline];
     [self setupVertex];
     [self setupTexture];
     [self setupThreadGroup];
+    [self setupDisplaylink];
+}
+
+- (void)setupDisplaylink {
+    
+    self.mDispalyLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(updateFrame)];
+    self.mDispalyLink.frameInterval = 2; // 默认是30FPS的帧率录制
+    [self.mDispalyLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
+    [self.mDispalyLink setPaused:NO];
+}
+
+- (void)updateFrame {
+    [self.decoder updateFrame:^(CVPixelBufferRef _Nonnull pixelBuffer) {
+        id<MTLTexture> textureY = nil;
+        id<MTLTexture> textureUV = nil;
+        // textureY 设置
+        {
+            size_t width = CVPixelBufferGetWidthOfPlane(pixelBuffer, 0);
+            size_t height = CVPixelBufferGetHeightOfPlane(pixelBuffer, 0);
+            MTLPixelFormat pixelFormat = MTLPixelFormatR8Unorm; // 这里的颜色格式不是RGBA
+
+            CVMetalTextureRef texture = NULL; // CoreVideo的Metal纹理
+            CVReturn status = CVMetalTextureCacheCreateTextureFromImage(NULL, self.textureCache, pixelBuffer, NULL, pixelFormat, width, height, 0, &texture);
+            if (status == kCVReturnSuccess) {
+                textureY = CVMetalTextureGetTexture(texture);
+                CFRelease(texture);
+            }
+        }
+        // textureUV设置
+        {
+            size_t with = CVPixelBufferGetWidthOfPlane(pixelBuffer, 1);
+            size_t heigt = CVPixelBufferGetHeightOfPlane(pixelBuffer, 1);
+            NSLog(@"CVPixelBufferGetWidthOfPlane size %ld - %ld", with, heigt);
+            MTLPixelFormat pixelFormat = MTLPixelFormatRG8Unorm; // 2-8bit的格式
+            CVMetalTextureRef texture = NULL;
+            CVReturn status = CVMetalTextureCacheCreateTextureFromImage(NULL, self.textureCache, pixelBuffer, NULL, pixelFormat, with, heigt, 1, &texture);
+            if (status == kCVReturnSuccess) {
+                textureUV = CVMetalTextureGetTexture(texture); // 转成Metal用的纹理
+                CFRelease(texture);
+            }
+        }
+    }];
 }
 
 - (void)setupMtkView {
@@ -158,6 +216,10 @@
         self.sourceTexture = CVMetalTextureGetTexture(tmpTexture);
         CFRelease(tmpTexture);
     }
+    
+    dispatch_sync(mEncodeQueue, ^{
+//        [self.encoder encodeFrame:sampleBuffer];
+    });
 }
 
 #pragma mark - MTKViewDelegate
